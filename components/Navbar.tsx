@@ -10,8 +10,8 @@ export default function Navbar() {
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <nav className="relative z-50 px-5 pt-5 md:px-10 md:pt-7">
-      <div className="mx-auto max-w-6xl bg-[#303038] px-5 py-4 text-[#f1efe9] shadow-sm md:px-8">
+    <nav className="relative z-50 px-4 pt-4 sm:px-6 sm:pt-5 lg:px-8 lg:pt-6">
+      <div className="mx-auto max-w-7xl bg-[#303038] px-4 py-3.5 sm:px-6 lg:px-7 lg:py-4 text-[#f1efe9] shadow-sm md:px-8">
         <div className="flex items-center justify-between">
           <Link
             href="/"
@@ -21,7 +21,7 @@ export default function Navbar() {
             StyleHub
           </Link>
 
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center gap-6 lg:gap-8 md:flex">
             <Link href="/" className="text-sm text-white/75 transition hover:text-white">
               Home
             </Link>
