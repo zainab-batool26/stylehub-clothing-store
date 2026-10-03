@@ -23,14 +23,14 @@ const categories = [
 
 export default function Categories() {
   return (
-    <section className="bg-[#eeece6] px-5 py-14 md:px-10 md:py-20">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-8 md:grid-cols-[0.55fr_1.45fr]">
+    <section className="bg-[#eeece6] px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-8 lg:grid-cols-[0.55fr_1.45fr] lg:gap-10">
           <div>
             <p className="text-xs uppercase tracking-[0.25em] text-[#ee8a4a]">
               Collections
             </p>
-            <h2 className="mt-4 max-w-xs font-serif text-5xl leading-none text-[#303038] md:text-6xl">
+            <h2 className="mt-3 max-w-sm font-serif text-4xl leading-none text-[#303038] sm:text-5xl lg:text-6xl">
               Start with a section.
             </h2>
             <p className="mt-5 max-w-xs text-sm leading-6 text-[#77767a]">
@@ -47,7 +47,7 @@ export default function Categories() {
                     ? "/shop?category=New%20Arrival"
                     : `/shop?category=${category.name}`
                 }
-                className={`group flex min-h-64 flex-col justify-between p-5 text-[#303038] transition hover:-translate-y-1 ${category.className}`}
+                className={`group flex min-h-52 sm:min-h-56 lg:min-h-64 flex-col justify-between p-5 text-[#303038] transition hover:-translate-y-1 ${category.className}`}
               >
                 <span className="text-xs text-[#77767a]">{category.number}</span>
                 <div>
