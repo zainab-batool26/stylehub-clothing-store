@@ -35,17 +35,17 @@ export default function ShopPage() {
   });
 
   return (
-    <main className="min-h-screen bg-[#eeece6] px-5 pb-20 pt-8 text-[#303038] md:px-10 md:pt-12">
-      <div className="mx-auto max-w-6xl">
+    <main className="min-h-screen bg-[#eeece6] px-4 pb-16 pt-6 text-[#303038] sm:px-6 sm:pt-8 lg:px-8 lg:pt-10">
+      <div className="mx-auto max-w-7xl">
         <div className="border-b border-[#303038]/15 pb-8">
           <p className="text-xs uppercase tracking-[0.25em] text-[#ee8a4a]">StyleHub / Shop</p>
           <div className="mt-4 flex flex-col justify-between gap-5 md:flex-row md:items-end">
-            <h1 className="font-serif text-5xl leading-none md:text-7xl">The collection</h1>
+            <h1 className="font-serif text-4xl leading-none sm:text-5xl lg:text-6xl">The collection</h1>
             <p className="max-w-sm text-sm leading-6 text-[#77767a]">Browse the pieces currently available. Search if you already know what you want.</p>
           </div>
         </div>
 
-        <div className="mt-7 grid gap-4 md:grid-cols-[1fr_auto]">
+        <div className="mt-7 grid gap-4 lg:grid-cols-[1fr_auto]">
           <input
             type="text"
             placeholder="Search by product name..."
@@ -82,11 +82,11 @@ export default function ShopPage() {
                 <p className="mt-2 text-sm text-[#77767a]">Try another name or category.</p>
               </div>
             ) : (
-              <div className="mt-4 grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-5 sm:gap-y-10 lg:grid-cols-4">
                 {filteredProducts.map((product) => (
                   <article key={product.id} className="group">
                     <Link href={"/shop/" + product.id} className="block">
-                      <div className="h-80 overflow-hidden bg-[#c4c3be]">
+                      <div className="aspect-[4/5] overflow-hidden bg-[#c4c3be]">
                         <img src={product.image} alt={product.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]" />
                       </div>
                     </Link>
