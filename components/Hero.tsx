@@ -1,49 +1,81 @@
 import Link from "next/link";
+import { products } from "@/data/products";
 
 export default function Hero() {
+  const heroProduct = products[0];
+
   return (
-    <section className="relative overflow-hidden border-b border-white/10 bg-[#0b0b0b]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(212,175,55,0.14),transparent_30%)]" />
-      <div className="relative mx-auto flex min-h-[680px] max-w-7xl items-center px-6 py-20 md:px-12 lg:px-20">
-        <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d4af37]">
-            New Collection 2026
-          </p>
+    <section className="px-5 pb-14 pt-5 md:px-10 md:pb-20 md:pt-7">
+      <div className="mx-auto grid max-w-6xl overflow-hidden bg-[#303038] md:grid-cols-[0.72fr_1.28fr]">
+        <div className="relative flex min-h-[560px] flex-col justify-between overflow-hidden px-7 py-10 text-[#f1efe9] md:px-10 md:py-12">
+          <div className="absolute -left-16 top-28 text-[190px] font-bold leading-none text-white/[0.035]">
+            01
+          </div>
 
-          <h1 className="mt-6 text-5xl font-semibold leading-[1.05] tracking-tight text-white md:text-7xl">
-            Quiet luxury.
-            <br />
-            <span className="text-zinc-400">Everyday style.</span>
-          </h1>
+          <div className="relative">
+            <p className="text-xs uppercase tracking-[0.25em] text-white/60">
+              StyleHub / New season
+            </p>
 
-          <p className="mt-7 max-w-xl text-base leading-7 text-zinc-400 md:text-lg">
-            Curated essentials with clean silhouettes, timeless tones, and
-            effortless pieces made for modern wardrobes.
-          </p>
+            <h1 className="mt-14 max-w-md font-serif text-6xl leading-[0.9] tracking-[-0.04em] md:text-8xl">
+              Wear
+              <br />
+              what
+              <br />
+              feels right.
+            </h1>
 
-          <div className="mt-9 flex flex-wrap gap-4">
+            <p className="mt-8 max-w-xs text-sm leading-6 text-white/65">
+              Simple pieces, everyday outfits and a few things you will want
+              to keep wearing.
+            </p>
+          </div>
+
+          <div className="relative flex flex-wrap gap-3">
             <Link
               href="/shop"
-              className="rounded-full bg-[#d4af37] px-7 py-3.5 text-sm font-semibold text-black transition hover:bg-[#e2c35c]"
+              className="bg-[#ee8a4a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#d86f35]"
             >
-              Shop Collection
+              Shop now
             </Link>
             <Link
               href="/categories"
-              className="rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:border-[#d4af37] hover:text-[#d4af37]"
+              className="border border-white/25 px-5 py-3 text-sm text-white/85 transition hover:bg-white/10"
             >
-              Explore Categories
+              Browse categories
             </Link>
           </div>
         </div>
 
-        <div className="absolute right-[-10%] top-1/2 hidden h-[520px] w-[520px] -translate-y-1/2 rounded-full border border-[#d4af37]/20 md:block">
-          <div className="absolute inset-10 rounded-full border border-white/10" />
-          <div className="absolute inset-24 rounded-full bg-gradient-to-br from-[#d4af37]/20 via-zinc-800 to-zinc-950" />
-          <p className="absolute inset-0 flex items-center justify-center text-sm uppercase tracking-[0.4em] text-zinc-500">
-            STYLE / 2026
-          </p>
+        <div className="relative min-h-[420px] bg-[#44444c] md:min-h-[560px]">
+          <img
+            src={heroProduct.image}
+            alt={heroProduct.name}
+            className="h-full w-full object-cover"
+          />
+
+          <div className="absolute left-5 top-5 max-w-xs bg-[#eeece6]/90 px-4 py-3 text-[#303038] md:left-8 md:top-8">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#77767a]">
+              Featured piece
+            </p>
+            <p className="mt-1 text-sm font-semibold">{heroProduct.name}</p>
+            <p className="mt-1 text-xs">Rs. {heroProduct.price.toLocaleString()}</p>
+          </div>
+
+          <Link
+            href={`/shop/${heroProduct.id}`}
+            className="absolute bottom-5 right-5 flex h-14 w-14 items-center justify-center bg-[#ee8a4a] text-2xl text-white transition hover:bg-[#d86f35] md:bottom-8 md:right-8"
+            aria-label={`View ${heroProduct.name}`}
+          >
+            +
+          </Link>
         </div>
+      </div>
+
+      <div className="mx-auto flex max-w-6xl items-center justify-between border-b border-[#303038]/15 py-5 text-xs uppercase tracking-[0.18em] text-[#77767a]">
+        <span>Everyday clothing</span>
+        <span className="hidden sm:block">Women / Men / New arrivals</span>
+        <span>Scroll to explore ↓</span>
       </div>
     </section>
   );
