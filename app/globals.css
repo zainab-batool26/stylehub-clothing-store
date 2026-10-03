@@ -1,12 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b0b0b;
-  --foreground: #f5f5f5;
-  --muted: #a1a1aa;
-  --surface: #151515;
-  --border: #292929;
-  --accent: #d4af37;
+  --background: #eeece6;
+  --foreground: #2d2d34;
+  --muted: #77767a;
+  --surface: #deddd8;
+  --dark: #303038;
+  --dark-soft: #3a3a43;
+  --border: rgba(48, 48, 56, 0.16);
+  --accent: #ee8a4a;
+  --accent-dark: #d86f35;
 }
 
 * {
@@ -25,11 +28,21 @@ body {
 }
 
 ::selection {
-  background: #d4af37;
-  color: #0b0b0b;
+  background: var(--accent);
+  color: white;
 }
 
 button,
 a {
   -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
