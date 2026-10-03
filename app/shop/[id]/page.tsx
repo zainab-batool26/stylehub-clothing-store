@@ -45,14 +45,14 @@ export default function ProductPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#eeece6] px-5 pb-20 pt-8 text-[#303038] md:px-10 md:pt-12">
-      <div className="mx-auto max-w-6xl">
+    <main className="min-h-screen bg-[#eeece6] px-4 pb-16 pt-6 text-[#303038] sm:px-6 sm:pt-8 lg:px-8 lg:pt-10">
+      <div className="mx-auto max-w-7xl">
         <Link href="/shop" className="text-xs uppercase tracking-[0.15em] text-[#77767a] hover:text-[#ee6f32]">← Back to shop</Link>
-        <div className="mt-7 grid gap-10 md:grid-cols-[1.08fr_0.92fr]">
-          <div className="bg-[#d1cfca]"><img src={product.image} alt={product.name} className="h-[620px] w-full object-cover" /></div>
-          <div className="flex flex-col justify-center md:px-5">
+        <div className="mt-6 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+          <div className="bg-[#d1cfca]"><img src={product.image} alt={product.name} className="aspect-[4/5] w-full object-cover lg:max-h-[620px]" /></div>
+          <div className="flex flex-col justify-center lg:px-5">
             <p className="text-xs uppercase tracking-[0.2em] text-[#ee6f32]">{product.category}</p>
-            <h1 className="mt-4 font-serif text-5xl leading-[0.95] md:text-6xl">{product.name}</h1>
+            <h1 className="mt-3 font-serif text-4xl leading-[0.95] sm:text-5xl lg:text-6xl">{product.name}</h1>
             <p className="mt-5 text-lg">Rs. {product.price.toLocaleString()}</p>
             <p className="mt-6 max-w-md text-sm leading-6 text-[#77767a]">{product.description}</p>
             <div className="mt-9 border-t border-[#303038]/15 pt-6">
