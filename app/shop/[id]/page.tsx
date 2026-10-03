@@ -2,18 +2,29 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "@/components/CartContext";
-import { products } from "@/data/products";
+import { getProduct, type Product } from "@/lib/products";
 
 export default function ProductPage() {
   const params = useParams();
   const { addToCart } = useCart();
+  const [product, setProduct] = useState<Product | null>(null);
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const product = products.find((item) => item.id === Number(params.id));
+  useEffect(() => {
+    const id = Number(params.id);
+    if (!Number.isFinite(id)) {
+      setLoading(false);
+      return;
+    }
+    getProduct(id).then(setProduct).finally(() => setLoading(false));
+  }, [params.id]);
+
+  if (loading) return <main className="min-h-screen bg-[#eeece6] px-6 py-20 text-[#303038]">Loading product...</main>;
 
   if (!product) {
     return (
@@ -36,43 +47,22 @@ export default function ProductPage() {
   return (
     <main className="min-h-screen bg-[#eeece6] px-5 pb-20 pt-8 text-[#303038] md:px-10 md:pt-12">
       <div className="mx-auto max-w-6xl">
-        <Link href="/shop" className="text-xs uppercase tracking-[0.15em] text-[#77767a] hover:text-[#ee6f32]">
-          ← Back to shop
-        </Link>
-
+        <Link href="/shop" className="text-xs uppercase tracking-[0.15em] text-[#77767a] hover:text-[#ee6f32]">← Back to shop</Link>
         <div className="mt-7 grid gap-10 md:grid-cols-[1.08fr_0.92fr]">
-          <div className="bg-[#d1cfca]">
-            <img src={product.image} alt={product.name} className="h-[620px] w-full object-cover" />
-          </div>
-
+          <div className="bg-[#d1cfca]"><img src={product.image} alt={product.name} className="h-[620px] w-full object-cover" /></div>
           <div className="flex flex-col justify-center md:px-5">
             <p className="text-xs uppercase tracking-[0.2em] text-[#ee6f32]">{product.category}</p>
             <h1 className="mt-4 font-serif text-5xl leading-[0.95] md:text-6xl">{product.name}</h1>
             <p className="mt-5 text-lg">Rs. {product.price.toLocaleString()}</p>
             <p className="mt-6 max-w-md text-sm leading-6 text-[#77767a]">{product.description}</p>
-
             <div className="mt-9 border-t border-[#303038]/15 pt-6">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-[0.15em]">Size</span>
-                <span className="text-xs text-[#99979a]">Choose one</span>
-              </div>
+              <div className="flex items-center justify-between"><span className="text-xs font-semibold uppercase tracking-[0.15em]">Size</span><span className="text-xs text-[#99979a]">Choose one</span></div>
               <div className="mt-3 flex gap-2">
                 {["S", "M", "L", "XL"].map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`h-11 w-12 border text-sm transition ${
-                      selectedSize === size
-                        ? "border-[#303038] bg-[#303038] text-white"
-                        : "border-[#303038]/20 hover:border-[#ee8a4a]"
-                    }`}
-                  >
-                    {size}
-                  </button>
+                  <button key={size} onClick={() => setSelectedSize(size)} className={"h-11 w-12 border text-sm transition " + (selectedSize === size ? "border-[#303038] bg-[#303038] text-white" : "border-[#303038]/20 hover:border-[#ee8a4a]")}>{size}</button>
                 ))}
               </div>
             </div>
-
             <div className="mt-6 flex items-center gap-5">
               <span className="text-xs font-semibold uppercase tracking-[0.15em]">Quantity</span>
               <div className="flex border border-[#303038]/20">
@@ -81,21 +71,10 @@ export default function ProductPage() {
                 <button onClick={() => setQuantity((q) => q + 1)} className="h-10 w-10 hover:bg-[#deddd8]">+</button>
               </div>
             </div>
-
-            <button
-              onClick={handleAddToCart}
-              className={`mt-8 w-full py-4 text-sm font-semibold transition ${
-                selectedSize
-                  ? "bg-[#ee8a4a] text-white hover:bg-[#d86f35]"
-                  : "cursor-not-allowed bg-[#d5d3ce] text-[#99979a]"
-              }`}
-            >
+            <button onClick={handleAddToCart} className={"mt-8 w-full py-4 text-sm font-semibold transition " + (selectedSize ? "bg-[#ee8a4a] text-white hover:bg-[#d86f35]" : "cursor-not-allowed bg-[#d5d3ce] text-[#99979a]")}>
               {added ? "Added to cart ✓" : selectedSize ? "Add to cart" : "Select a size"}
             </button>
-
-            <div className="mt-5 border-t border-[#303038]/15 pt-4 text-xs text-[#77767a]">
-              Easy checkout · Cash on delivery available
-            </div>
+            <div className="mt-5 border-t border-[#303038]/15 pt-4 text-xs text-[#77767a]">Easy checkout · Cash on delivery available</div>
           </div>
         </div>
       </div>
