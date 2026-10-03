@@ -17,10 +17,10 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#0b0b0b] px-6 text-center text-white">
+      <main className="flex min-h-screen items-center justify-center bg-[#eeece6] px-6 text-center text-[#303038]">
         <div>
-          <h1 className="text-3xl font-semibold">Product Not Found</h1>
-          <Link href="/shop" className="mt-5 inline-block text-[#d4af37] underline">Back to Shop</Link>
+          <h1 className="font-serif text-4xl">Product not found</h1>
+          <Link href="/shop" className="mt-5 inline-block text-[#ee6f32] underline">Back to shop</Link>
         </div>
       </main>
     );
@@ -34,32 +34,38 @@ export default function ProductPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0b0b0b] px-6 py-12 text-white md:px-12 lg:px-20">
+    <main className="min-h-screen bg-[#eeece6] px-5 pb-20 pt-8 text-[#303038] md:px-10 md:pt-12">
       <div className="mx-auto max-w-6xl">
-        <Link href="/shop" className="text-sm text-zinc-500 transition hover:text-[#d4af37]">← Back to Shop</Link>
+        <Link href="/shop" className="text-xs uppercase tracking-[0.15em] text-[#77767a] hover:text-[#ee6f32]">
+          ← Back to shop
+        </Link>
 
-        <div className="mt-8 grid gap-12 md:grid-cols-2">
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#151515]">
-            <img src={product.image} alt={product.name} className="h-[560px] w-full object-contain" />
+        <div className="mt-7 grid gap-10 md:grid-cols-[1.08fr_0.92fr]">
+          <div className="bg-[#d1cfca]">
+            <img src={product.image} alt={product.name} className="h-[620px] w-full object-cover" />
           </div>
 
-          <div className="flex flex-col justify-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#d4af37]">{product.category}</p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">{product.name}</h1>
-            <p className="mt-5 text-2xl font-semibold">Rs. {product.price.toLocaleString()}</p>
-            <p className="mt-6 max-w-xl leading-7 text-zinc-400">{product.description}</p>
+          <div className="flex flex-col justify-center md:px-5">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#ee6f32]">{product.category}</p>
+            <h1 className="mt-4 font-serif text-5xl leading-[0.95] md:text-6xl">{product.name}</h1>
+            <p className="mt-5 text-lg">Rs. {product.price.toLocaleString()}</p>
+            <p className="mt-6 max-w-md text-sm leading-6 text-[#77767a]">{product.description}</p>
 
-            <div className="mt-8">
+            <div className="mt-9 border-t border-[#303038]/15 pt-6">
               <div className="flex items-center justify-between">
-                <h3 className="font-semibold">Select Size</h3>
-                <span className="text-xs text-zinc-500">Required</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.15em]">Size</span>
+                <span className="text-xs text-[#99979a]">Choose one</span>
               </div>
               <div className="mt-3 flex gap-2">
                 {["S", "M", "L", "XL"].map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`h-11 w-14 rounded-full border text-sm font-semibold transition ${selectedSize === size ? "border-[#d4af37] bg-[#d4af37] text-black" : "border-white/15 text-zinc-300 hover:border-white/40"}`}
+                    className={`h-11 w-12 border text-sm transition ${
+                      selectedSize === size
+                        ? "border-[#303038] bg-[#303038] text-white"
+                        : "border-[#303038]/20 hover:border-[#ee8a4a]"
+                    }`}
                   >
                     {size}
                   </button>
@@ -67,26 +73,28 @@ export default function ProductPage() {
               </div>
             </div>
 
-            <div className="mt-8">
-              <h3 className="font-semibold">Quantity</h3>
-              <div className="mt-3 flex w-fit items-center rounded-full border border-white/15 bg-[#151515]">
-                <button onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="px-5 py-3 text-lg text-zinc-300 hover:text-white">−</button>
-                <span className="w-10 text-center font-semibold">{quantity}</span>
-                <button onClick={() => setQuantity((q) => q + 1)} className="px-5 py-3 text-lg text-zinc-300 hover:text-white">+</button>
+            <div className="mt-6 flex items-center gap-5">
+              <span className="text-xs font-semibold uppercase tracking-[0.15em]">Quantity</span>
+              <div className="flex border border-[#303038]/20">
+                <button onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="h-10 w-10 hover:bg-[#deddd8]">−</button>
+                <span className="flex h-10 w-10 items-center justify-center border-x border-[#303038]/20 text-sm">{quantity}</span>
+                <button onClick={() => setQuantity((q) => q + 1)} className="h-10 w-10 hover:bg-[#deddd8]">+</button>
               </div>
             </div>
 
             <button
               onClick={handleAddToCart}
-              className={`mt-8 rounded-full py-4 font-semibold transition ${selectedSize ? "bg-[#d4af37] text-black hover:bg-[#e2c35c]" : "cursor-not-allowed bg-zinc-800 text-zinc-500"}`}
+              className={`mt-8 w-full py-4 text-sm font-semibold transition ${
+                selectedSize
+                  ? "bg-[#ee8a4a] text-white hover:bg-[#d86f35]"
+                  : "cursor-not-allowed bg-[#d5d3ce] text-[#99979a]"
+              }`}
             >
-              {added ? "Added to Cart ✓" : selectedSize ? "Add to Cart" : "Select a Size"}
+              {added ? "Added to cart ✓" : selectedSize ? "Add to cart" : "Select a size"}
             </button>
 
-            <div className="mt-8 grid grid-cols-3 gap-3 border-t border-white/10 pt-6 text-center text-xs text-zinc-500">
-              <span>Premium quality</span>
-              <span>Easy checkout</span>
-              <span>Secure shopping</span>
+            <div className="mt-5 border-t border-[#303038]/15 pt-4 text-xs text-[#77767a]">
+              Easy checkout · Cash on delivery available
             </div>
           </div>
         </div>
