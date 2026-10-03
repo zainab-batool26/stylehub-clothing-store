@@ -8,18 +8,34 @@ export default function CheckoutPage() {
   const { cart } = useCart();
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [payment, setPayment] = useState("Cash on Delivery");
+  const [form, setForm] = useState({ name: "", email: "", phone: "", address: "" });
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const shipping = subtotal > 0 ? 250 : 0;
+  const total = subtotal + shipping;
+
+  const updateField = (field: keyof typeof form, value: string) => {
+    setForm((current) => ({ ...current, [field]: value }));
+  };
+
+  const validPhone = /^[0-9+\-\s]{10,15}$/.test(form.phone.trim());
+  const isValid =
+    form.name.trim().length >= 2 &&
+    /\S+@\S+\.\S+/.test(form.email) &&
+    validPhone &&
+    form.address.trim().length >= 10;
 
   if (orderPlaced) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#0b0b0b] px-6 text-white">
-        <div className="w-full max-w-lg rounded-2xl border border-white/10 bg-[#151515] p-10 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#d4af37] text-2xl font-bold text-black">✓</div>
-          <h1 className="mt-6 text-3xl font-semibold">Order placed</h1>
-          <p className="mt-3 text-zinc-500">Thank you for shopping with StyleHub.</p>
-          <Link href="/shop" className="mt-8 inline-block rounded-full bg-[#d4af37] px-8 py-3 font-semibold text-black hover:bg-[#e2c35c]">
-            Continue Shopping
+      <main className="flex min-h-screen items-center justify-center bg-[#eeece6] px-6 text-[#303038]">
+        <div className="w-full max-w-lg bg-[#303038] p-10 text-center text-[#f1efe9]">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center bg-[#ee8a4a] text-xl font-bold">
+            ✓
+          </div>
+          <h1 className="mt-6 font-serif text-4xl">Order placed.</h1>
+          <p className="mt-3 text-sm text-white/60">Thank you for shopping with StyleHub.</p>
+          <Link href="/shop" className="mt-7 inline-block bg-[#ee8a4a] px-7 py-3 text-sm font-semibold text-white hover:bg-[#d86f35]">
+            Continue shopping
           </Link>
         </div>
       </main>
@@ -28,58 +44,85 @@ export default function CheckoutPage() {
 
   if (cart.length === 0) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#0b0b0b] px-6 text-center text-white">
+      <main className="flex min-h-screen items-center justify-center bg-[#eeece6] px-6 text-center text-[#303038]">
         <div>
-          <h1 className="text-3xl font-semibold">Your cart is empty</h1>
-          <Link href="/shop" className="mt-6 inline-block text-[#d4af37] underline">Go to Shop</Link>
+          <h1 className="font-serif text-4xl">Your cart is empty.</h1>
+          <Link href="/shop" className="mt-6 inline-block text-[#ee6f32] underline">Go to shop</Link>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#0b0b0b] px-6 py-12 text-white md:px-12 lg:px-20">
-      <div className="mx-auto max-w-5xl">
-        <Link href="/cart" className="text-sm text-zinc-500 hover:text-[#d4af37]">← Back to Cart</Link>
-        <h1 className="mt-6 text-4xl font-semibold">Checkout</h1>
+    <main className="min-h-screen bg-[#eeece6] px-5 pb-20 pt-8 text-[#303038] md:px-10 md:pt-12">
+      <div className="mx-auto max-w-6xl">
+        <Link href="/cart" className="text-xs uppercase tracking-[0.15em] text-[#77767a] hover:text-[#ee6f32]">
+          ← Back to cart
+        </Link>
 
-        <div className="mt-10 grid gap-8 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-[#151515] p-6">
-            <h2 className="text-xl font-semibold">Delivery details</h2>
-            <div className="mt-6 space-y-4">
-              <input type="text" placeholder="Full Name" className="w-full rounded-xl border border-white/10 bg-[#0f0f0f] px-4 py-3 text-white outline-none placeholder:text-zinc-600 focus:border-[#d4af37]" />
-              <input type="email" placeholder="Email Address" className="w-full rounded-xl border border-white/10 bg-[#0f0f0f] px-4 py-3 text-white outline-none placeholder:text-zinc-600 focus:border-[#d4af37]" />
-              <input type="tel" placeholder="Phone Number" className="w-full rounded-xl border border-white/10 bg-[#0f0f0f] px-4 py-3 text-white outline-none placeholder:text-zinc-600 focus:border-[#d4af37]" />
-              <textarea placeholder="Delivery Address" rows={4} className="w-full rounded-xl border border-white/10 bg-[#0f0f0f] px-4 py-3 text-white outline-none placeholder:text-zinc-600 focus:border-[#d4af37]" />
-              <select value={payment} onChange={(e) => setPayment(e.target.value)} className="w-full rounded-xl border border-white/10 bg-[#0f0f0f] px-4 py-3 text-white outline-none focus:border-[#d4af37]">
+        <div className="mt-6 border-b border-[#303038]/15 pb-8">
+          <p className="text-xs uppercase tracking-[0.25em] text-[#ee8a4a]">StyleHub / Checkout</p>
+          <h1 className="mt-3 font-serif text-5xl md:text-6xl">Almost yours.</h1>
+        </div>
+
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_360px]">
+          <div className="bg-[#deddd8] p-6 md:p-8">
+            <h2 className="font-serif text-3xl">Delivery details</h2>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <input value={form.name} onChange={(e) => updateField("name", e.target.value)} type="text" placeholder="Full name" className="border border-[#303038]/15 bg-[#f4f2ec] px-4 py-3 text-sm outline-none focus:border-[#ee8a4a]" />
+              <input value={form.email} onChange={(e) => updateField("email", e.target.value)} type="email" placeholder="Email address" className="border border-[#303038]/15 bg-[#f4f2ec] px-4 py-3 text-sm outline-none focus:border-[#ee8a4a]" />
+              <input value={form.phone} onChange={(e) => updateField("phone", e.target.value)} type="tel" placeholder="Phone number" inputMode="tel" className="border border-[#303038]/15 bg-[#f4f2ec] px-4 py-3 text-sm outline-none focus:border-[#ee8a4a]" />
+              <select value={payment} onChange={(e) => setPayment(e.target.value)} className="border border-[#303038]/15 bg-[#f4f2ec] px-4 py-3 text-sm outline-none focus:border-[#ee8a4a]">
                 <option>Cash on Delivery</option>
                 <option>Bank Transfer</option>
               </select>
+              <textarea value={form.address} onChange={(e) => updateField("address", e.target.value)} placeholder="Delivery address" rows={5} className="border border-[#303038]/15 bg-[#f4f2ec] px-4 py-3 text-sm outline-none focus:border-[#ee8a4a] sm:col-span-2" />
             </div>
+
+            <p className="mt-4 text-xs text-[#77767a]">
+              Please enter a valid phone number using digits, spaces, + or -.
+            </p>
           </div>
 
-          <div className="h-fit rounded-2xl border border-white/10 bg-[#151515] p-6">
-            <h2 className="text-xl font-semibold">Order summary</h2>
-            <div className="mt-6 space-y-5">
+          <aside className="h-fit bg-[#303038] p-6 text-[#f1efe9]">
+            <p className="text-xs uppercase tracking-[0.2em] text-white/50">Order</p>
+            <div className="mt-5 space-y-4">
               {cart.map((item) => (
-                <div key={`${item.id}-${item.size}`} className="flex justify-between border-b border-white/10 pb-4">
+                <div key={`${item.id}-${item.size}`} className="flex justify-between gap-4 border-b border-white/10 pb-4">
                   <div>
-                    <p className="font-medium">{item.name}</p>
-                    <p className="mt-1 text-sm text-zinc-500">Size {item.size} × {item.quantity}</p>
+                    <p className="text-sm">{item.name}</p>
+                    <p className="mt-1 text-xs text-white/45">Size {item.size} × {item.quantity}</p>
                   </div>
-                  <p className="font-semibold">Rs. {(item.price * item.quantity).toLocaleString()}</p>
+                  <p className="text-sm">Rs. {(item.price * item.quantity).toLocaleString()}</p>
                 </div>
               ))}
             </div>
-            <div className="mt-6 flex justify-between border-t border-white/10 pt-6 text-xl font-semibold">
-              <span>Total</span>
-              <span>Rs. {total.toLocaleString()}</span>
+
+            <div className="mt-5 space-y-3 border-t border-white/10 pt-5 text-sm">
+              <div className="flex justify-between text-white/60"><span>Subtotal</span><span>Rs. {subtotal.toLocaleString()}</span></div>
+              <div className="flex justify-between text-white/60"><span>Delivery</span><span>Rs. {shipping.toLocaleString()}</span></div>
+              <div className="flex justify-between border-t border-white/10 pt-4 font-semibold"><span>Total</span><span>Rs. {total.toLocaleString()}</span></div>
             </div>
-            <p className="mt-3 text-xs text-zinc-600">Payment: {payment}</p>
-            <button onClick={() => setOrderPlaced(true)} className="mt-6 w-full rounded-full bg-[#d4af37] py-4 font-semibold text-black transition hover:bg-[#e2c35c]">
-              Place Order
+
+            <button
+              disabled={!isValid}
+              onClick={() => setOrderPlaced(true)}
+              className={`mt-7 w-full py-3.5 text-sm font-semibold transition ${
+                isValid
+                  ? "bg-[#ee8a4a] text-white hover:bg-[#d86f35]"
+                  : "cursor-not-allowed bg-white/10 text-white/35"
+              }`}
+            >
+              Place order
             </button>
-          </div>
+
+            {!isValid && (
+              <p className="mt-3 text-xs leading-5 text-white/40">
+                Fill in your name, email, phone and complete delivery address to continue.
+              </p>
+            )}
+          </aside>
         </div>
       </div>
     </main>
