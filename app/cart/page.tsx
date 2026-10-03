@@ -12,11 +12,11 @@ export default function CartPage() {
   const total = subtotal + shipping;
 
   return (
-    <main className="min-h-screen bg-[#eeece6] px-5 pb-20 pt-8 text-[#303038] md:px-10 md:pt-12">
-      <div className="mx-auto max-w-6xl">
+    <main className="min-h-screen bg-[#eeece6] px-4 pb-16 pt-6 text-[#303038] sm:px-6 sm:pt-8 lg:px-8 lg:pt-10">
+      <div className="mx-auto max-w-7xl">
         <div className="border-b border-[#303038]/15 pb-8">
           <p className="text-xs uppercase tracking-[0.25em] text-[#ee8a4a]">StyleHub / Your bag</p>
-          <h1 className="mt-3 font-serif text-5xl md:text-6xl">Shopping cart</h1>
+          <h1 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl">Shopping cart</h1>
         </div>
 
         {cart.length === 0 ? (
@@ -31,7 +31,7 @@ export default function CartPage() {
             </Link>
           </div>
         ) : (
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_330px]">
+          <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
             <div className="space-y-3">
               {cart.map((product) => (
                 <div key={`${product.id}-${product.size}`} className="grid gap-5 border-b border-[#303038]/15 py-5 sm:grid-cols-[120px_1fr_auto]">
