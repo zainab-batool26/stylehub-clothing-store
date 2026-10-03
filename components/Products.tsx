@@ -8,43 +8,60 @@ export default function Products() {
   const { addToCart } = useCart();
 
   return (
-    <section className="bg-[#111111] px-6 py-20 md:px-12 lg:px-20">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-10 flex items-end justify-between">
+    <section className="bg-[#deddd8] px-5 py-14 md:px-10 md:py-20">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-8 flex items-end justify-between border-b border-[#303038]/15 pb-4">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#d4af37]">
-              Curated For You
+            <p className="text-xs uppercase tracking-[0.25em] text-[#ee8a4a]">
+              The edit
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
-              Featured pieces
+            <h2 className="mt-2 font-serif text-4xl text-[#303038] md:text-5xl">
+              A few favourites
             </h2>
           </div>
-          <Link href="/shop" className="hidden text-sm font-semibold text-zinc-300 transition hover:text-[#d4af37] md:block">
-            View all →
+          <Link href="/shop" className="text-sm text-[#55545a] hover:text-[#ee6f32]">
+            See everything →
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product) => (
-            <article key={product.id} className="group overflow-hidden rounded-2xl border border-white/10 bg-[#171717] transition duration-300 hover:-translate-y-1 hover:border-white/20">
-              <Link href={`/shop/${product.id}`}>
-                <div className="h-80 overflow-hidden bg-zinc-900">
-                  <img src={product.image} alt={product.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+        <div className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          {products.map((product, index) => (
+            <article key={product.id} className="group">
+              <Link href={`/shop/${product.id}`} className="block">
+                <div className="relative h-80 overflow-hidden bg-[#b9b8b3]">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+                  />
+                  {index < 2 && (
+                    <span className="absolute left-3 top-3 bg-[#303038] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-white">
+                      Pick
+                    </span>
+                  )}
                 </div>
               </Link>
 
-              <div className="p-5">
-                <p className="text-xs uppercase tracking-wider text-[#d4af37]">{product.category}</p>
+              <div className="pt-4">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-[#ee6f32]">
+                  {product.category}
+                </p>
                 <Link href={`/shop/${product.id}`}>
-                  <h3 className="mt-2 text-lg font-semibold text-white transition hover:text-[#d4af37]">{product.name}</h3>
+                  <h3 className="mt-1 text-base font-semibold text-[#303038] hover:text-[#ee6f32]">
+                    {product.name}
+                  </h3>
                 </Link>
-                <p className="mt-2 font-semibold text-zinc-200">Rs. {product.price.toLocaleString()}</p>
-                <button
-                  onClick={() => addToCart(product, "M", 1)}
-                  className="mt-5 w-full rounded-full border border-white/15 py-3 text-sm font-semibold text-white transition hover:border-[#d4af37] hover:bg-[#d4af37] hover:text-black"
-                >
-                  Quick Add
-                </button>
+                <div className="mt-2 flex items-center justify-between gap-3">
+                  <p className="text-sm text-[#55545a]">
+                    Rs. {product.price.toLocaleString()}
+                  </p>
+                  <button
+                    onClick={() => addToCart(product, "M", 1)}
+                    className="border-b border-[#303038]/30 pb-0.5 text-xs font-semibold text-[#303038] hover:border-[#ee6f32] hover:text-[#ee6f32]"
+                  >
+                    Quick add
+                  </button>
+                </div>
               </div>
             </article>
           ))}
