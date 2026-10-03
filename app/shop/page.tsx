@@ -21,59 +21,80 @@ export default function ShopPage() {
   });
 
   return (
-    <main className="min-h-screen bg-[#0b0b0b] px-6 py-12 md:px-12 lg:px-20">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#d4af37]">StyleHub</p>
-          <h1 className="mt-3 text-4xl font-semibold text-white md:text-5xl">Shop the collection</h1>
-          <p className="mt-3 text-zinc-500">Timeless pieces, curated for everyday wear.</p>
+    <main className="min-h-screen bg-[#eeece6] px-5 pb-20 pt-8 text-[#303038] md:px-10 md:pt-12">
+      <div className="mx-auto max-w-6xl">
+        <div className="border-b border-[#303038]/15 pb-8">
+          <p className="text-xs uppercase tracking-[0.25em] text-[#ee8a4a]">StyleHub / Shop</p>
+          <div className="mt-4 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <h1 className="font-serif text-5xl leading-none md:text-7xl">The collection</h1>
+            <p className="max-w-sm text-sm leading-6 text-[#77767a]">
+              Browse the pieces currently available. Search if you already know what you want.
+            </p>
+          </div>
         </div>
 
-        <div className="mb-5">
+        <div className="mt-7 grid gap-4 md:grid-cols-[1fr_auto]">
           <input
             type="text"
-            placeholder="Search products..."
+            placeholder="Search by product name..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-xl border border-white/10 bg-[#151515] px-5 py-3.5 text-white outline-none placeholder:text-zinc-600 focus:border-[#d4af37]"
+            className="border border-[#303038]/20 bg-[#f5f3ed] px-4 py-3 text-sm text-[#303038] outline-none placeholder:text-[#99979a] focus:border-[#ee8a4a]"
           />
+
+          <div className="flex flex-wrap gap-2">
+            {categories.map((item) => (
+              <button
+                key={item}
+                onClick={() => setCategory(item)}
+                className={`border px-4 py-2.5 text-xs font-semibold transition ${
+                  category === item
+                    ? "border-[#303038] bg-[#303038] text-white"
+                    : "border-[#303038]/20 bg-transparent text-[#66656a] hover:border-[#303038]/50"
+                }`}
+              >
+                {item === "New Arrival" ? "New Arrivals" : item}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="mb-10 flex flex-wrap gap-2">
-          {categories.map((item) => (
-            <button
-              key={item}
-              onClick={() => setCategory(item)}
-              className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${category === item ? "bg-[#d4af37] text-black" : "border border-white/10 bg-[#151515] text-zinc-400 hover:border-white/25 hover:text-white"}`}
-            >
-              {item === "New Arrival" ? "New Arrivals" : item}
-            </button>
-          ))}
-        </div>
+        <p className="mt-8 text-xs text-[#88868a]">
+          {filteredProducts.length} {filteredProducts.length === 1 ? "piece" : "pieces"}
+        </p>
 
         {filteredProducts.length === 0 ? (
-          <div className="rounded-2xl border border-white/10 bg-[#151515] py-20 text-center">
-            <h2 className="text-2xl font-semibold text-white">No products found</h2>
-            <p className="mt-2 text-zinc-500">Try another search or category.</p>
+          <div className="mt-4 border border-[#303038]/15 bg-[#e2e0da] py-20 text-center">
+            <h2 className="font-serif text-3xl">Nothing matched that search.</h2>
+            <p className="mt-2 text-sm text-[#77767a]">Try another name or category.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-4 grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {filteredProducts.map((product) => (
-              <article key={product.id} className="group overflow-hidden rounded-2xl border border-white/10 bg-[#151515] transition hover:-translate-y-1 hover:border-white/20">
-                <Link href={`/shop/${product.id}`}>
-                  <div className="h-80 overflow-hidden bg-zinc-900">
-                    <img src={product.image} alt={product.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+              <article key={product.id} className="group">
+                <Link href={`/shop/${product.id}`} className="block">
+                  <div className="h-80 overflow-hidden bg-[#c4c3be]">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+                    />
                   </div>
                 </Link>
-                <div className="p-5">
-                  <p className="text-xs uppercase tracking-wider text-[#d4af37]">{product.category}</p>
+                <div className="pt-4">
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-[#ee6f32]">{product.category}</p>
                   <Link href={`/shop/${product.id}`}>
-                    <h2 className="mt-2 text-lg font-semibold text-white hover:text-[#d4af37]">{product.name}</h2>
+                    <h2 className="mt-1 text-base font-semibold hover:text-[#ee6f32]">{product.name}</h2>
                   </Link>
-                  <p className="mt-2 font-semibold text-zinc-200">Rs. {product.price.toLocaleString()}</p>
-                  <button onClick={() => addToCart(product, "M", 1)} className="mt-5 w-full rounded-full border border-white/15 py-3 text-sm font-semibold text-white transition hover:border-[#d4af37] hover:bg-[#d4af37] hover:text-black">
-                    Quick Add
-                  </button>
+                  <div className="mt-2 flex items-center justify-between gap-3">
+                    <p className="text-sm text-[#55545a]">Rs. {product.price.toLocaleString()}</p>
+                    <button
+                      onClick={() => addToCart(product, "M", 1)}
+                      className="border-b border-[#303038]/30 text-xs font-semibold hover:border-[#ee6f32] hover:text-[#ee6f32]"
+                    >
+                      Quick add
+                    </button>
+                  </div>
                 </div>
               </article>
             ))}
