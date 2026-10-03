@@ -31,6 +31,7 @@ export default function Navbar() {
             <Link href="/categories" className="text-sm text-white/75 transition hover:text-white">
               Categories
             </Link>
+            <Link href="/admin" className="text-sm text-white/75 transition hover:text-white">Admin</Link>
             <Link href="/cart" className="relative text-sm text-white/75 transition hover:text-white">
               Cart
               {totalItems > 0 && (
@@ -55,6 +56,7 @@ export default function Navbar() {
             <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
             <Link href="/shop" onClick={() => setMenuOpen(false)}>Shop</Link>
             <Link href="/categories" onClick={() => setMenuOpen(false)}>Categories</Link>
+            <Link href="/admin" onClick={() => setMenuOpen(false)}>Admin</Link>
             <Link href="/cart" onClick={() => setMenuOpen(false)}>Cart ({totalItems})</Link>
           </div>
         )}
