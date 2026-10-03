@@ -54,18 +54,18 @@ export default function CheckoutPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#eeece6] px-5 pb-20 pt-8 text-[#303038] md:px-10 md:pt-12">
-      <div className="mx-auto max-w-6xl">
+    <main className="min-h-screen bg-[#eeece6] px-4 pb-16 pt-6 text-[#303038] sm:px-6 sm:pt-8 lg:px-8 lg:pt-10">
+      <div className="mx-auto max-w-7xl">
         <Link href="/cart" className="text-xs uppercase tracking-[0.15em] text-[#77767a] hover:text-[#ee6f32]">
           ← Back to cart
         </Link>
 
         <div className="mt-6 border-b border-[#303038]/15 pb-8">
           <p className="text-xs uppercase tracking-[0.25em] text-[#ee8a4a]">StyleHub / Checkout</p>
-          <h1 className="mt-3 font-serif text-5xl md:text-6xl">Almost yours.</h1>
+          <h1 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl">Almost yours.</h1>
         </div>
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_360px]">
+        <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
           <div className="bg-[#deddd8] p-6 md:p-8">
             <h2 className="font-serif text-3xl">Delivery details</h2>
 
