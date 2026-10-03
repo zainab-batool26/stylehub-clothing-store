@@ -5,10 +5,10 @@ export default function Hero() {
   const heroProduct = products[0];
 
   return (
-    <section className="px-5 pb-14 pt-5 md:px-10 md:pb-20 md:pt-7">
-      <div className="mx-auto grid max-w-6xl overflow-hidden bg-[#303038] md:grid-cols-[0.72fr_1.28fr]">
-        <div className="relative flex min-h-[560px] flex-col justify-between overflow-hidden px-7 py-10 text-[#f1efe9] md:px-10 md:py-12">
-          <div className="absolute -left-16 top-28 text-[190px] font-bold leading-none text-white/[0.035]">
+    <section className="px-4 pb-10 pt-4 sm:px-6 sm:pb-14 lg:px-8 lg:pb-16 lg:pt-6">
+      <div className="mx-auto grid max-w-7xl overflow-hidden bg-[#303038] lg:grid-cols-[0.78fr_1.22fr]">
+        <div className="relative flex min-h-[470px] flex-col justify-between overflow-hidden px-7 py-10 text-[#f1efe9] sm:px-8 sm:py-9 lg:min-h-[520px] lg:px-10 lg:py-11">
+          <div className="absolute -left-16 top-28 text-[150px] font-bold leading-none text-white/[0.035]">
             01
           </div>
 
@@ -17,7 +17,7 @@ export default function Hero() {
               StyleHub / New season
             </p>
 
-            <h1 className="mt-14 max-w-md font-serif text-6xl leading-[0.9] tracking-[-0.04em] md:text-8xl">
+            <h1 className="mt-10 max-w-md font-serif text-5xl leading-[0.92] tracking-[-0.04em] sm:text-6xl lg:mt-12 lg:text-7xl">
               Wear
               <br />
               what
@@ -25,7 +25,7 @@ export default function Hero() {
               feels right.
             </h1>
 
-            <p className="mt-8 max-w-xs text-sm leading-6 text-white/65">
+            <p className="mt-6 max-w-sm text-sm leading-6 text-white/65">
               Simple pieces, everyday outfits and a few things you will want
               to keep wearing.
             </p>
@@ -47,7 +47,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative min-h-[420px] bg-[#44444c] md:min-h-[560px]">
+        <div className="relative min-h-[360px] bg-[#44444c] sm:min-h-[430px] lg:min-h-[520px]">
           <img
             src={heroProduct.image}
             alt={heroProduct.name}
@@ -72,7 +72,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-6xl items-center justify-between border-b border-[#303038]/15 py-5 text-xs uppercase tracking-[0.18em] text-[#77767a]">
+      <div className="mx-auto flex max-w-7xl items-center justify-between border-b border-[#303038]/15 py-5 text-xs uppercase tracking-[0.18em] text-[#77767a]">
         <span>Everyday clothing</span>
         <span className="hidden sm:block">Women / Men / New arrivals</span>
         <span>Scroll to explore ↓</span>
