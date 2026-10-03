@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StyleHub
 
-## Getting Started
+StyleHub is a Next.js clothing-store portfolio project with an editorial charcoal, cream and muted-orange visual system.
 
-First, run the development server:
+## Stack
+
+- Next.js 16
+- TypeScript
+- Tailwind CSS
+- Supabase Postgres
+- Supabase Auth
+- Supabase Storage
+
+## Features
+
+- Product catalogue loaded from Supabase
+- Search and category filtering
+- Product detail pages with size and quantity selection
+- Cart and checkout flow
+- Admin dashboard at `/admin`
+- Add, edit and delete products without changing source code
+- Product image uploads through Supabase Storage
+- Email/password admin authentication with database-backed admin access
+
+## Local setup
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create `.env.local` from `.env.example` and add the Supabase project URL and publishable key.
+
+Then run:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Admin setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The admin dashboard intentionally has no public sign-up form.
 
-## Learn More
+1. In Supabase Dashboard, create the admin user under Authentication.
+2. Sign in once at `/admin`.
+3. If the account is not yet approved, the page shows the account UUID and the one-time SQL needed to add it to `public.admin_users`.
+4. Run that SQL in the Supabase SQL Editor.
+5. Sign in again. You can then add, edit, delete and upload product images from the dashboard.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Never put a Supabase secret/service-role key in the browser or in GitHub. Only the publishable key belongs in `.env.local`.
