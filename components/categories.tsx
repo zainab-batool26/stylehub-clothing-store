@@ -2,67 +2,66 @@ import Link from "next/link";
 
 const categories = [
   {
+    number: "01",
     name: "Women",
-    description: "Refined essentials for every occasion.",
-    accent: "from-[#3a3020] to-[#151515]",
+    description: "Dresses and everyday pieces.",
+    className: "bg-[#d7d5cf]",
   },
   {
+    number: "02",
     name: "Men",
-    description: "Clean classics with a modern edge.",
-    accent: "from-[#242424] to-[#111111]",
+    description: "Clean, easy-to-wear essentials.",
+    className: "bg-[#c9c8c4]",
   },
   {
+    number: "03",
     name: "New Arrivals",
-    description: "Fresh pieces just added to StyleHub.",
-    accent: "from-[#302a1e] to-[#151515]",
+    description: "The latest pieces added to StyleHub.",
+    className: "bg-[#dedbd3]",
   },
 ];
 
 export default function Categories() {
   return (
-    <section className="bg-[#0b0b0b] px-6 py-20 md:px-12 lg:px-20">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#d4af37]">
-            Collections
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
-            Find your style
-          </h2>
-          <p className="mt-3 max-w-2xl text-zinc-500">
-            Explore carefully selected collections built around timeless,
-            wearable pieces.
-          </p>
-        </div>
+    <section className="bg-[#eeece6] px-5 py-14 md:px-10 md:py-20">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-8 md:grid-cols-[0.55fr_1.45fr]">
+          <div>
+            <p className="text-xs uppercase tracking-[0.25em] text-[#ee8a4a]">
+              Collections
+            </p>
+            <h2 className="mt-4 max-w-xs font-serif text-5xl leading-none text-[#303038] md:text-6xl">
+              Start with a section.
+            </h2>
+            <p className="mt-5 max-w-xs text-sm leading-6 text-[#77767a]">
+              No complicated browsing. Pick a category and see what is there.
+            </p>
+          </div>
 
-        <div className="grid gap-5 md:grid-cols-3">
-          {categories.map((category) => (
-            <Link
-              key={category.name}
-              href={category.name === "New Arrivals"
-                ? "/shop?category=New%20Arrival"
-                : `/shop?category=${category.name}`}
-              className={`group relative min-h-72 overflow-hidden rounded-2xl bg-gradient-to-br ${category.accent} p-7 transition duration-300 hover:-translate-y-1 hover:border-[#d4af37]/30 hover:shadow-2xl`}
-            >
-              <div className="absolute right-6 top-5 text-7xl font-light text-white/5 transition group-hover:text-[#d4af37]/10">
-                ✦
-              </div>
-              <div className="relative flex h-full flex-col justify-end">
-                <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">
-                  Collection
-                </p>
-                <h3 className="mt-2 text-3xl font-semibold text-white">
-                  {category.name}
-                </h3>
-                <p className="mt-2 max-w-xs text-sm leading-6 text-zinc-400">
-                  {category.description}
-                </p>
-                <span className="mt-6 text-sm font-semibold text-[#d4af37]">
-                  Explore →
-                </span>
-              </div>
-            </Link>
-          ))}
+          <div className="grid gap-3 sm:grid-cols-3">
+            {categories.map((category) => (
+              <Link
+                key={category.name}
+                href={
+                  category.name === "New Arrivals"
+                    ? "/shop?category=New%20Arrival"
+                    : `/shop?category=${category.name}`
+                }
+                className={`group flex min-h-64 flex-col justify-between p-5 text-[#303038] transition hover:-translate-y-1 ${category.className}`}
+              >
+                <span className="text-xs text-[#77767a]">{category.number}</span>
+                <div>
+                  <h3 className="font-serif text-3xl">{category.name}</h3>
+                  <p className="mt-2 text-xs leading-5 text-[#66656a]">
+                    {category.description}
+                  </p>
+                  <span className="mt-5 inline-block text-xs font-semibold uppercase tracking-[0.12em] text-[#ee6f32]">
+                    View →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>
