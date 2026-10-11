@@ -5,56 +5,61 @@ export default function Hero() {
   const heroProduct = products[0];
 
   return (
-    <section className="px-4 pb-10 pt-4 sm:px-6 sm:pb-14 lg:px-8 lg:pb-16 lg:pt-6">
-      <div className="mx-auto grid max-w-7xl overflow-hidden bg-[#303038] lg:grid-cols-[0.78fr_1.22fr]">
-        <div className="relative flex min-h-[470px] flex-col justify-between overflow-hidden px-7 py-10 text-[#f1efe9] sm:px-8 sm:py-9 lg:min-h-[520px] lg:px-10 lg:py-11">
-          <div className="absolute -left-16 top-28 text-[150px] font-bold leading-none text-white/[0.035]">
-            01
+    <section className="px-4 py-4 sm:px-6 sm:py-5 lg:px-8">
+      <div className="mx-auto grid min-h-[calc(100svh-108px)] max-w-7xl overflow-hidden bg-[#303038] lg:grid-cols-[0.88fr_1.12fr]">
+        <div className="relative flex flex-col justify-center overflow-hidden px-6 py-8 text-[#f1efe9] sm:px-9 sm:py-10 lg:px-12 lg:py-8">
+          <div className="pointer-events-none absolute -left-8 top-1/2 -translate-y-1/2 select-none font-serif text-[180px] font-bold leading-none text-white/[0.035] lg:text-[220px]">
+            S
           </div>
 
           <div className="relative">
-            <p className="text-xs uppercase tracking-[0.25em] text-white/60">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-white/60 sm:text-xs">
               StyleHub / New season
             </p>
 
-            <h1 className="mt-10 max-w-md font-serif text-5xl leading-[0.92] tracking-[-0.04em] sm:text-6xl lg:mt-12 lg:text-7xl">
-              Wear
-              <br />
-              what
+            <h1 className="mt-6 max-w-lg font-serif text-5xl leading-[0.96] tracking-[-0.04em] sm:text-6xl lg:mt-8 lg:text-7xl xl:text-[5.5rem]">
+              Wear what
               <br />
               feels right.
             </h1>
 
-            <p className="mt-6 max-w-sm text-sm leading-6 text-white/65">
+            <p className="mt-5 max-w-sm text-sm leading-6 text-white/65 sm:mt-6">
               Simple pieces, everyday outfits and a few things you will want
               to keep wearing.
             </p>
+
+            <div className="mt-7 flex flex-wrap gap-3 sm:mt-8">
+              <Link
+                href="/shop"
+                className="bg-[#ee8a4a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#d86f35]"
+              >
+                Shop the collection <span aria-hidden="true">→</span>
+              </Link>
+              <Link
+                href="/categories"
+                className="border border-white/25 px-5 py-3 text-sm text-white/85 transition hover:bg-white/10"
+              >
+                Browse categories
+              </Link>
+            </div>
           </div>
 
-          <div className="relative flex flex-wrap gap-3">
-            <Link
-              href="/shop"
-              className="bg-[#ee8a4a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#d86f35]"
-            >
-              Shop now
-            </Link>
-            <Link
-              href="/categories"
-              className="border border-white/25 px-5 py-3 text-sm text-white/85 transition hover:bg-white/10"
-            >
-              Browse categories
-            </Link>
+          <div className="relative mt-8 flex items-center gap-5 border-t border-white/15 pt-5 text-[10px] uppercase tracking-[0.16em] text-white/45 sm:mt-10">
+            <span>Everyday clothing</span>
+            <span className="h-1 w-1 rounded-full bg-[#ee8a4a]" />
+            <span>Women / Men / New arrivals</span>
           </div>
         </div>
 
-        <div className="relative min-h-[360px] bg-[#44444c] sm:min-h-[430px] lg:min-h-[520px]">
+        <div className="relative min-h-[280px] bg-[#44444c] sm:min-h-[360px] lg:min-h-0">
           <img
             src={heroProduct.image}
             alt={heroProduct.name}
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#17171b]/40 via-transparent to-transparent" />
 
-          <div className="absolute left-5 top-5 max-w-xs bg-[#eeece6]/90 px-4 py-3 text-[#303038] md:left-8 md:top-8">
+          <div className="absolute left-4 top-4 max-w-[calc(100%-2rem)] bg-[#eeece6]/95 px-4 py-3 text-[#303038] sm:left-7 sm:top-7">
             <p className="text-[10px] uppercase tracking-[0.2em] text-[#77767a]">
               Featured piece
             </p>
@@ -64,18 +69,12 @@ export default function Hero() {
 
           <Link
             href={`/shop/${heroProduct.id}`}
-            className="absolute bottom-5 right-5 flex h-14 w-14 items-center justify-center bg-[#ee8a4a] text-2xl text-white transition hover:bg-[#d86f35] md:bottom-8 md:right-8"
+            className="absolute bottom-4 right-4 flex h-12 w-12 items-center justify-center bg-[#ee8a4a] text-2xl text-white transition hover:bg-[#d86f35] sm:bottom-7 sm:right-7 sm:h-14 sm:w-14"
             aria-label={`View ${heroProduct.name}`}
           >
             +
           </Link>
         </div>
-      </div>
-
-      <div className="mx-auto flex max-w-7xl items-center justify-between border-b border-[#303038]/15 py-5 text-xs uppercase tracking-[0.18em] text-[#77767a]">
-        <span>Everyday clothing</span>
-        <span className="hidden sm:block">Women / Men / New arrivals</span>
-        <span>Scroll to explore ↓</span>
       </div>
     </section>
   );
