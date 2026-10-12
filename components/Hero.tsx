@@ -14,22 +14,22 @@ export default function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
         <div className="relative z-10 flex min-h-[560px] max-w-2xl flex-col items-start justify-center px-6 py-12 text-white sm:min-h-[640px] sm:px-12 lg:min-h-[min(760px,78vh)] lg:px-16 xl:px-20">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/85 sm:text-xs">
-            StyleHub / New season
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 sm:text-xs">
+            The new season
           </p>
-          <h1 className="mt-5 max-w-xl text-5xl font-semibold uppercase leading-[0.94] tracking-[-0.055em] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-            Dress for
+          <h1 className="mt-5 max-w-xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+            Clothes for
             <br />
-            your everyday.
+            real life.
           </h1>
-          <p className="mt-5 max-w-sm text-sm leading-6 text-white/85 sm:text-base">
-            The pieces you'll reach for again and again.
+          <p className="mt-5 max-w-sm text-sm leading-6 text-white/90 sm:text-base">
+            Good basics, easy layers, and a few pieces that make getting dressed easier.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link href="/shop?category=Women" className="inline-flex min-h-12 items-center justify-center bg-white px-6 text-[11px] font-bold uppercase tracking-[0.1em] text-[#202020] transition hover:bg-[#e9e5dd]">
+            <Link href="/shop?category=Women" className="inline-flex min-h-12 items-center justify-center bg-white px-6 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#202020] transition hover:bg-[#e9e5dd]">
               Shop women
             </Link>
-            <Link href="/shop?category=Men" className="inline-flex min-h-12 items-center justify-center border border-white/80 px-6 text-[11px] font-bold uppercase tracking-[0.1em] text-white transition hover:bg-white hover:text-[#202020]">
+            <Link href="/shop?category=Men" className="inline-flex min-h-12 items-center justify-center border border-white/80 px-6 text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-white hover:text-[#202020]">
               Shop men
             </Link>
           </div>
@@ -39,7 +39,7 @@ export default function Hero() {
           className="absolute bottom-5 right-5 z-10 flex items-center gap-3 border border-white/60 bg-black/20 px-4 py-3 text-white backdrop-blur-sm transition hover:bg-white hover:text-[#202020] sm:bottom-8 sm:right-8"
         >
           <span className="text-left">
-            <span className="block text-[9px] font-semibold uppercase tracking-[0.16em]">In focus</span>
+            <span className="block text-[9px] font-medium uppercase tracking-[0.12em]">Featured piece</span>
             <span className="mt-1 block text-xs font-semibold">{heroProduct.name}</span>
           </span>
           <span aria-hidden="true" className="text-lg">↗</span>
