@@ -109,6 +109,25 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <footer className="bg-white px-4 pb-7 pt-9 sm:px-6 lg:px-10">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-7 border-t border-black/15 pt-7 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <Link href="/" className="text-2xl font-black uppercase tracking-[-0.08em]">
+              STYLEHUB<span className="text-[#b85d32]">.</span>
+            </Link>
+            <p className="mt-2 max-w-sm text-xs leading-5 text-[#77736d]">
+              Everyday clothing, considered essentials, and fresh finds for your wardrobe.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-x-5 gap-y-3 text-[10px] font-bold uppercase tracking-[0.12em]">
+            <Link href="/shop" className="hover:text-[#a6532e]">Shop all</Link>
+            <Link href="/categories" className="hover:text-[#a6532e]">Categories</Link>
+            <Link href="/cart" className="hover:text-[#a6532e]">Shopping bag</Link>
+          </div>
+        </div>
+        <p className="mx-auto mt-7 max-w-[1440px] text-[10px] text-[#77736d]">© {new Date().getFullYear()} StyleHub. All rights reserved.</p>
+      </footer>
     </main>
   );
 }
