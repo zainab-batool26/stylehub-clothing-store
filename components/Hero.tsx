@@ -5,75 +5,58 @@ export default function Hero() {
   const heroProduct = products[0];
 
   return (
-    <section className="px-4 py-4 sm:px-6 sm:py-5 lg:px-8">
-      <div className="mx-auto grid min-h-[calc(100svh-108px)] max-w-7xl overflow-hidden bg-[#303038] lg:grid-cols-[0.88fr_1.12fr]">
-        <div className="relative flex flex-col justify-center overflow-hidden px-6 py-8 text-[#f1efe9] sm:px-9 sm:py-10 lg:px-12 lg:py-8">
-          <div className="pointer-events-none absolute -left-8 top-1/2 -translate-y-1/2 select-none font-serif text-[180px] font-bold leading-none text-white/[0.035] lg:text-[220px]">
-            S
+    <section className="px-3 pt-3 sm:px-5 sm:pt-5 lg:px-6">
+      <div className="mx-auto grid max-w-[1600px] overflow-hidden bg-[#eceae5] md:min-h-[570px] md:grid-cols-[0.88fr_1.12fr] lg:min-h-[650px]">
+        <div className="relative flex flex-col items-start justify-center px-6 py-10 sm:px-10 sm:py-14 lg:px-14 xl:px-20">
+          <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#a6532e] sm:text-xs">
+            StyleHub / New season
+          </p>
+          <h1 className="mt-5 max-w-xl text-5xl font-bold uppercase leading-[0.92] tracking-[-0.06em] text-[#202020] sm:text-6xl lg:text-7xl xl:text-[5.8rem]">
+            Your style.
+            <br />
+            Your rules.
+          </h1>
+          <p className="mt-5 max-w-sm text-sm leading-6 text-[#55534f] sm:mt-6 sm:text-base">
+            New-season favourites and everyday pieces made to work with your wardrobe.
+          </p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Link href="/shop?category=Women" className="inline-flex min-h-12 items-center justify-center bg-[#202020] px-6 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-[#a6532e]">
+              Shop women
+            </Link>
+            <Link href="/shop?category=Men" className="inline-flex min-h-12 items-center justify-center border border-[#202020]/40 px-6 text-xs font-bold uppercase tracking-wide text-[#202020] transition hover:border-[#202020] hover:bg-white/60">
+              Shop men
+            </Link>
           </div>
-
-          <div className="relative">
-            <p className="text-[10px] uppercase tracking-[0.25em] text-white/60 sm:text-xs">
-              StyleHub / New season
-            </p>
-
-            <h1 className="mt-6 max-w-lg font-serif text-5xl leading-[0.96] tracking-[-0.04em] sm:text-6xl lg:mt-8 lg:text-7xl xl:text-[5.5rem]">
-              Wear what
-              <br />
-              feels right.
-            </h1>
-
-            <p className="mt-5 max-w-sm text-sm leading-6 text-white/65 sm:mt-6">
-              Simple pieces, everyday outfits and a few things you will want
-              to keep wearing.
-            </p>
-
-            <div className="mt-7 flex flex-wrap gap-3 sm:mt-8">
-              <Link
-                href="/shop"
-                className="bg-[#ee8a4a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#d86f35]"
-              >
-                Shop the collection <span aria-hidden="true">→</span>
-              </Link>
-              <Link
-                href="/categories"
-                className="border border-white/25 px-5 py-3 text-sm text-white/85 transition hover:bg-white/10"
-              >
-                Browse categories
-              </Link>
-            </div>
-          </div>
-
-          <div className="relative mt-8 flex items-center gap-5 border-t border-white/15 pt-5 text-[10px] uppercase tracking-[0.16em] text-white/45 sm:mt-10">
-            <span>Everyday clothing</span>
-            <span className="h-1 w-1 rounded-full bg-[#ee8a4a]" />
-            <span>Women / Men / New arrivals</span>
+          <div className="mt-10 flex items-center gap-3 border-t border-black/15 pt-5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#77736d] sm:mt-14">
+            <span>Everyday essentials</span>
+            <span className="h-1 w-1 rounded-full bg-[#a6532e]" />
+            <span>New arrivals</span>
           </div>
         </div>
 
-        <div className="relative min-h-[280px] bg-[#44444c] sm:min-h-[360px] lg:min-h-0">
+        <div className="relative min-h-[360px] overflow-hidden bg-[#d3d0c9] sm:min-h-[480px] md:min-h-full">
           <img
             src={heroProduct.image}
             alt={heroProduct.name}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover object-center transition duration-700 hover:scale-[1.02]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#17171b]/40 via-transparent to-transparent" />
-
-          <div className="absolute left-4 top-4 max-w-[calc(100%-2rem)] bg-[#eeece6]/95 px-4 py-3 text-[#303038] sm:left-7 sm:top-7">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-[#77767a]">
-              Featured piece
-            </p>
-            <p className="mt-1 text-sm font-semibold">{heroProduct.name}</p>
-            <p className="mt-1 text-xs">Rs. {heroProduct.price.toLocaleString()}</p>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+          <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4 text-white sm:bottom-7 sm:left-7 sm:right-7">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/80">
+                Featured piece
+              </p>
+              <p className="mt-1 text-lg font-semibold sm:text-xl">{heroProduct.name}</p>
+              <p className="mt-1 text-sm">Rs. {heroProduct.price.toLocaleString()}</p>
+            </div>
+            <Link
+              href={`/shop/${heroProduct.id}`}
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-2xl text-black transition hover:bg-[#ee8a4a] hover:text-white sm:h-14 sm:w-14"
+              aria-label={`View ${heroProduct.name}`}
+            >
+              ↗
+            </Link>
           </div>
-
-          <Link
-            href={`/shop/${heroProduct.id}`}
-            className="absolute bottom-4 right-4 flex h-12 w-12 items-center justify-center bg-[#ee8a4a] text-2xl text-white transition hover:bg-[#d86f35] sm:bottom-7 sm:right-7 sm:h-14 sm:w-14"
-            aria-label={`View ${heroProduct.name}`}
-          >
-            +
-          </Link>
         </div>
       </div>
     </section>
